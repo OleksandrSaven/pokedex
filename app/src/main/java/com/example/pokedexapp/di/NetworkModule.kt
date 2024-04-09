@@ -20,7 +20,7 @@ object NetworkModule {
     fun providePokemonRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://pokeapi.co")
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
     }

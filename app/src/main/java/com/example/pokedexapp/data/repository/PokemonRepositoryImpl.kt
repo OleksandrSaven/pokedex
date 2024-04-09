@@ -9,14 +9,18 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class PokemonRepositoryImpl @Inject constructor(private val apiPokemon: PokeApi): PokemonRepository {
-    override suspend fun getPokemon(limit: Int): Resource<PokemonDto> {
+    override suspend fun getPokemon(offset: Int, limit: Int): Resource<PokemonDto> {
         return withContext(Dispatchers.IO){
             try {
-                val response = apiPokemon.getPokemon(limit)
+                val response = apiPokemon.getPokemon(offset, limit)
                 Resource.Success(data = response)
             } catch (e: Exception) {
                 Resource.Error("Cant get data from internet...")
             }
         }
+    }
+
+    override suspend fun getPokemonInfo(id: Int): Resource<PokemonInfoDto> {
+        TODO("Not yet implemented")
     }
 }
