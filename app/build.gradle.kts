@@ -84,7 +84,6 @@ dependencies {
 
     implementation("io.coil-kt:coil-compose:2.6.0")
 
-
     implementation ("androidx.navigation:navigation-compose:2.4.0-alpha08")
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
 }

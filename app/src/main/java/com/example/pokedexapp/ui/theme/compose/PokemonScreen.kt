@@ -17,18 +17,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
-import com.example.pokedexapp.data.PokemonNameUrl
+import com.example.pokedexapp.R
+import com.example.pokedexapp.domain.model.PokemonNameUrl
 
 @Composable
 fun PokemonScreen(
     pokemon: PokemonNameUrl,
     onClick: (Int) -> Unit
 ) {
-    val spliter = pokemon.url.split("/")
+    val splitter = pokemon.url.split("/")
     Card (
         modifier = Modifier
             .padding(4.dp)
-            .clickable { onClick((spliter[spliter.size - 2]).toInt()) }
+            .clickable { onClick((splitter[splitter.size - 2]).toInt()) }
            ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -41,7 +42,7 @@ fun PokemonScreen(
             )
             SubcomposeAsyncImage(
                 modifier = Modifier.fillMaxWidth(),
-                model = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${spliter[spliter.size - 2]}.png",
+                model = "$POKEMON_API_IMAGE_URL${splitter[splitter.size - 2]}.png",
                 loading = {
                     Box(
                         modifier = Modifier.fillMaxWidth()

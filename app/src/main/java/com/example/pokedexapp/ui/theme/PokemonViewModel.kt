@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pokedexapp.data.mapper.toModel
 import com.example.pokedexapp.data.repository.PokemonRepositoryImpl
 import com.example.pokedexapp.domain.model.PokemonState
 import com.example.pokedexapp.util.Resource
@@ -27,6 +28,28 @@ class PokemonViewModel @Inject constructor(
         loadPokemon(offset, limit)
     }
 
+    fun loadPokemonInfo(id: Int) {
+        viewModelScope.launch {
+            state = state.copy(
+                loading = true,
+                errorMessage = null
+            )
+            when(val result = repository.getPokemonInfo(id)) {
+                is Resource.Success -> {
+                    state = state.copy(
+                        loading = false,
+                        errorMessage = null,
+                        pokemonInfo = result.data?.toModel()
+                    )
+                }
+                 is Resource.Error -> {
+                     result.message
+                 }
+                else -> {}
+            }
+        }
+    }
+
     fun loadPokemon(offset: Int, limit: Int) {
         viewModelScope.launch {
             state = state.copy(
@@ -46,6 +69,7 @@ class PokemonViewModel @Inject constructor(
                     )
                 }
                 is Resource.Error -> result.message
+                else -> {}
             }
         }
     }

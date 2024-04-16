@@ -14,16 +14,20 @@ fun NavGraph(navController: NavHostController, viewModel: PokemonViewModel) {
         navController = navController,
         startDestination = "pokemon_list")
     {
-        composable("pokemon_list",) {
+        composable("pokemon_list") {
             HomeScreen(
                 viewModel = viewModel, navController)
         }
-
-        composable("pokemon_details/{index}") { backStackEntry ->
+        composable("pokemon_details/{index}") {
+                backStackEntry ->
             val index = backStackEntry.arguments?.getString("index")?.toIntOrNull()
-            index?.let { PokemonDetailsScreen(
-                index = it,
-                navigateBack = {navController.popBackStack()})}
+            index?.let {
+                PokemonDetailsScreen(
+                    navigateBack = { navController.popBackStack()},
+                    viewModel = viewModel,
+                    index = it
+                )
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
-package com.example.pokedexapp.data
+package com.example.pokedexapp.domain.model.Dto
+
+import com.example.pokedexapp.domain.model.PokemonNameUrl
 
 
 data class PokemonDto(
