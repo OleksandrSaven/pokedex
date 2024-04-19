@@ -14,19 +14,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pokedexapp.domain.model.Type
+import com.example.pokedexapp.domain.model.Types
 
 @Composable
-fun TypeScreen(type: List<Type>) {
+fun TypeScreen(type: List<Types>) {
     LazyRow {
         items(type) { item ->
             Card (
                 modifier = Modifier
                     .size(120.dp, 30.dp)
                     .padding(horizontal = 4.dp),
-                colors = CardDefaults.cardColors(containerColor = item.getColor(item.name))
+                colors = CardDefaults.cardColors(containerColor = item.type.getColor(item.type.name))
             ){
                 Text(
-                    text = item.name.replaceFirstChar { it.uppercase() },
+                    text = item.type.name.replaceFirstChar { it.uppercase() },
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .padding(2.dp),

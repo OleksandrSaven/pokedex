@@ -1,7 +1,7 @@
 package com.example.pokedexapp.data.network
 
-import com.example.pokedexapp.domain.model.Dto.PokemonDto
-import com.example.pokedexapp.domain.model.Dto.PokemonInfoDto
+import com.example.pokedexapp.domain.model.dto.PokemonDto
+import com.example.pokedexapp.domain.model.dto.PokemonInfoDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

@@ -10,6 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
+const val BASE_URL = "https://pokeapi.co"
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
@@ -18,7 +19,7 @@ object NetworkModule {
     @Singleton
     fun providePokemonRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://pokeapi.co")
+            .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()

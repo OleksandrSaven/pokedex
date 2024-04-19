@@ -7,4 +7,5 @@
     <string name="pokemon_details">Pokemon Details</string>
     <string name="back">Back</string>
     <string name="pokedex">Pokedex</string>
+    <string name="INTERNET_ERROR_MSG">"Cant get data from internet..." </string>
 </resources>

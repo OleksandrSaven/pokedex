@@ -1,4 +1,4 @@
-package com.example.pokedexapp.domain.model.Dto
+package com.example.pokedexapp.domain.model.dto
 
 import com.example.pokedexapp.domain.model.Types
 import com.squareup.moshi.Json
@@ -13,5 +13,5 @@ data class PokemonInfoDto(
     @field:Json(name="types")
     val types: List<Types>,
     @field:Json(name = "stats")
-    val status: List<BaseStat>
+    val stats: List<BaseStat>
 )

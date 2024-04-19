@@ -15,7 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pokedexapp.R
-import com.example.pokedexapp.domain.model.Dto.BaseStat
+import com.example.pokedexapp.domain.model.dto.BaseStat
 
 @Composable
 fun StatScreen(stat: List<BaseStat>) {
