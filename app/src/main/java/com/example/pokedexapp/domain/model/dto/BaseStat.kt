@@ -8,6 +8,3 @@ data class BaseStat(
     val baseStat: Int,
     val stat: Stat
 )
-
-
-

@@ -1,13 +1,13 @@
 package com.example.pokedexapp.data.mapper
 
 import com.example.pokedexapp.data.constant.PokemonStrings
+import com.example.pokedexapp.domain.model.dto.BaseStat
 import com.example.pokedexapp.domain.model.dto.PokemonInfoDto
 import com.example.pokedexapp.domain.model.PokemonInfo
 import com.example.pokedexapp.domain.model.PokemonNameUrl
 import com.example.pokedexapp.domain.model.Stat
 import com.example.pokedexapp.domain.model.Type
 import com.example.pokedexapp.domain.model.Types
-import com.example.pokedexapp.domain.model.dto.BaseStat
 import com.example.pokedexapp.domain.model.entity.PokemonEntity
 import com.example.pokedexapp.domain.model.entity.PokemonPages
 
