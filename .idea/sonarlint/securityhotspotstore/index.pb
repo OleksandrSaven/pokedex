@@ -40,8 +40,6 @@ P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 u
 Eapp/src/main/java/com/example/pokedexapp/domain/model/PokemonState.kt,8\c\8c8f272e486323ea3b75826bbe4b496fc5a81180
-p
-@app/src/main/java/com/example/pokedexapp/domain/model/Pokemon.kt,4\f\4f418cf6d1a3c2b4cfea3af509dd2205964358f5
 w
 Gapp/src/main/java/com/example/pokedexapp/ui/theme/compose/HomeScreen.kt,9\d\9def79e8da75d2603d3cc1bf916c741251ee39a5
 z
@@ -81,8 +79,6 @@ Aapp/src/main/java/com/example/pokedexapp/domain/model/StatInfo.kt,b\9\b94a1f15
 Å
 Qapp/src/main/java/com/example/pokedexapp/ui/theme/compose/PokemonPictureScreen.kt,3\3\3381ab16f7f0abf5ac5430d8fec547302de8fb4d
 w
-Gapp/src/main/java/com/example/pokedexapp/domain/model/Dto/PokemonDto.kt,8\5\85d38740ae32078842f4b1070309b9419aad936a
-w
 Gapp/src/main/java/com/example/pokedexapp/domain/model/PokemonNameUrl.kt,d\6\d6d2a7040ad4635e8ac7a9fb3bcd8a2b17f6d589
 u
 Eapp/src/main/java/com/example/pokedexapp/domain/model/Dto/BaseStat.kt,d\c\dc63dd69a2471392401ed9fc84dd2d9bc3bcb80d
@@ -94,8 +90,6 @@ u
 Eapp/src/main/java/com/example/pokedexapp/domain/model/dto/BaseStat.kt,5\1\51dc870bf1878a6726c385347061ff5e64456eda
 }
 Mapp/src/main/java/com/example/pokedexapp/domain/model/entity/PokemonEntity.kt,7\c\7c91b9bb083450e314d0a1ad20c8d7bfbd6ac946
-w
-Gapp/src/main/java/com/example/pokedexapp/domain/model/dto/PokemonDto.kt,d\7\d78867f7be8301e9ed90b62a2d967a2bcb666e3e
 m
 =app/src/main/java/com/example/pokedexapp/di/DatabaseModule.kt,d\2\d2925d519ee4b397c60b00dd6f1f632ab41cd31a
 m
@@ -108,3 +102,11 @@ Happ/src/main/java/com/example/pokedexapp/data/database/dao/PokemonDao.kt,2\6\2
 Kapp/src/main/java/com/example/pokedexapp/domain/model/dto/PokemonInfoDto.kt,0\d\0df018be4641c0b6d9fd6ad58cc207547e33238b
 |
 Lapp/src/main/java/com/example/pokedexapp/domain/model/entity/PokemonPages.kt,6\d\6d3c2497c74ecff5960edafe1bbc97ec93e74ec1
+j
+:app/src/main/java/com/example/pokedexapp/util/Qualifier.kt,c\1\c1836e706e3a136ecba3b32825dfe9b6302467dd
+x
+Happ/src/main/java/com/example/pokedexapp/data/constant/PokemonStrings.kt,7\f\7f67b0f0fc3999e8833ad15c1c40c2fb34dd5d2a
+{
+Kapp/src/main/java/com/example/pokedexapp/domain/model/dto/PokemonPageDto.kt,8\c\8c070dbcc101c0ea2ffe7808162be1cf5b16db10
+p
+@app/src/main/java/com/example/pokedexapp/worker/PokemonWorker.kt,5\c\5cb147e05878af1a24213d745fbe69c085000da6

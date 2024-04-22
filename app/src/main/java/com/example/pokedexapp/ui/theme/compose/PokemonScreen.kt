@@ -14,13 +14,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
+import com.example.pokedexapp.R
 import com.example.pokedexapp.domain.model.PokemonNameUrl
+
+const val POKEMON_ID = 2
 
 @Composable
 fun PokemonScreen(
@@ -31,8 +34,8 @@ fun PokemonScreen(
     val context = LocalContext.current
     Card (
         modifier = Modifier
-            .padding(4.dp)
-            .clickable { onClick((splitter[splitter.size - 2]).toInt()) }
+            .padding(dimensionResource(id = R.dimen.padding_4))
+            .clickable { onClick((splitter[splitter.size - POKEMON_ID]).toInt()) }
            ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -40,12 +43,12 @@ fun PokemonScreen(
         ) {
             Text(
                 text = pokemon.name.replaceFirstChar { it.uppercase() },
-                fontSize = 20.sp,
+                fontSize = dimensionResource(id = R.dimen.font_size_20).value.sp,
                 textAlign = TextAlign.Center
             )
             val imageRequest = ImageRequest.Builder(context = context)
-                .data("$POKEMON_API_IMAGE_URL${splitter[splitter.size - 2]}.png")
-                .diskCacheKey("$POKEMON_API_IMAGE_URL${splitter[splitter.size - 2]}.png")
+                .data("$POKEMON_API_IMAGE_URL${splitter[splitter.size - POKEMON_ID]}.png")
+                .diskCacheKey("$POKEMON_API_IMAGE_URL${splitter[splitter.size - POKEMON_ID]}.png")
                 .diskCachePolicy(CachePolicy.ENABLED)
                 .build()
 
@@ -54,8 +57,9 @@ fun PokemonScreen(
                 model = imageRequest,
                 loading = {
                     Box(
-                        modifier = Modifier.fillMaxWidth()
-                            .height(200.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(dimensionResource(id = R.dimen.box_height_200)),
                         contentAlignment = Alignment.Center) {
                         CircularProgressIndicator()
                     }

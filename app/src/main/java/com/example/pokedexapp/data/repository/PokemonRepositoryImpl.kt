@@ -1,16 +1,15 @@
 package com.example.pokedexapp.data.repository
 
-import com.example.pokedexapp.R
 import com.example.pokedexapp.data.database.dao.PokemonDao
 import com.example.pokedexapp.data.network.PokeApi
-import com.example.pokedexapp.domain.model.dto.PokemonDto
+import com.example.pokedexapp.domain.model.dto.PokemonPageDto
 import com.example.pokedexapp.domain.model.dto.PokemonInfoDto
 import com.example.pokedexapp.domain.model.entity.PokemonEntity
 import com.example.pokedexapp.domain.model.entity.PokemonPages
-import com.example.pokedexapp.domain.model.entity.PokemonType
 import com.example.pokedexapp.domain.repository.PokemonRepository
+import com.example.pokedexapp.util.IoDispatcher
 import com.example.pokedexapp.util.Resource
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -19,28 +18,23 @@ const val INTERNET_ERROR_MSG = "Cant get data from internet..."
 class PokemonRepositoryImpl @Inject constructor(
     private val apiPokemon: PokeApi,
     private val pokemonDao: PokemonDao,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : PokemonRepository {
 
     override suspend fun getAllPage(): List<PokemonPages> {
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             pokemonDao.getAllPages()
         }
     }
 
     override suspend fun savePage(pages: List<PokemonPages>) {
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             pokemonDao.insertPage(pages)
         }
     }
 
-    override suspend fun savePokemonType(type: PokemonType) {
-        withContext(Dispatchers.IO) {
-            pokemonDao.insertPokemonType(type)
-        }
-    }
-
-    override suspend fun getPokemon(offset: Int, limit: Int): Resource<PokemonDto> {
-        return withContext(Dispatchers.IO){
+    override suspend fun getPokemon(offset: Int, limit: Int): Resource<PokemonPageDto> {
+        return withContext(ioDispatcher){
             try {
                 val response = apiPokemon.getPokemon(offset, limit)
                 Resource.Success(data = response)
@@ -51,7 +45,7 @@ class PokemonRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getPokemonInfo(id: Int): Resource<PokemonInfoDto> {
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             try {
                 val response = apiPokemon.getPokemonInfo(id)
                 Resource.Success(data = response)
@@ -61,18 +55,15 @@ class PokemonRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getAllPokemon(): List<PokemonEntity> {
-        TODO("Not yet implemented")
-    }
 
     override suspend fun getPokemonFromDb(id: Int): PokemonEntity {
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             pokemonDao.getPokemonById(id);
         }
     }
 
     override suspend fun savePokemon(pokemon: PokemonEntity) {
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             pokemonDao.insertPokemon(pokemon)
         }
     }

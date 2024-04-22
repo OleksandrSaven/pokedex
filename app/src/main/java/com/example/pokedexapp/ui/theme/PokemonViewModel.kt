@@ -13,7 +13,6 @@ import com.example.pokedexapp.data.mapper.toPokemonInfo
 import com.example.pokedexapp.domain.model.PokemonState
 import com.example.pokedexapp.domain.model.entity.PokemonEntity
 import com.example.pokedexapp.domain.model.entity.PokemonPages
-import com.example.pokedexapp.domain.model.entity.PokemonType
 import com.example.pokedexapp.domain.repository.PokemonRepository
 import com.example.pokedexapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,26 +31,6 @@ class PokemonViewModel @Inject constructor(
 
     var state by mutableStateOf(PokemonState())
         private set
-
-    private fun savePage(page: List<PokemonPages>) {
-        viewModelScope.launch {
-            repository.savePage(page)
-        }
-    }
-
-    private suspend fun getPage(): List<PokemonPages> {
-        return repository.getAllPage()
-    }
-
-    fun savePokemon(pokemon: PokemonEntity, pokemonType: List<PokemonType>) {
-        viewModelScope.launch {
-            repository.savePokemon(pokemon)
-
-            pokemonType.forEach { type ->
-                repository.savePokemonType(type)
-            }
-        }
-    }
 
     fun loadNextPage() {
         val nextUrl = state.next
@@ -84,20 +63,26 @@ class PokemonViewModel @Inject constructor(
                             errorMessage = null,
                             pokemonInfo = result.data?.toModel()
                         )
-                        val pokemonType = result.data?.types?.map{ PokemonType( it.type.name, id) }
-
                         result.data?.toModel()?.let {
-                            if (pokemonType != null) {
-                                savePokemon(it.toEntity(), pokemonType)
-                            }
+                                savePokemon(it.toEntity())
                         }
                     }
-
                     is Resource.Error -> {
                         result.message
                     }
                 }
             }
+        }
+    }
+
+    fun loadPokemonFromDb() {
+        viewModelScope.launch {
+            val pokemonFromDb = getPage()
+            state = state.copy(
+                loading = false,
+                offset = pokemonFromDb.size,
+                result = pokemonFromDb.map { it.toPokemonNameUrl() }
+            )
         }
     }
 
@@ -125,19 +110,22 @@ class PokemonViewModel @Inject constructor(
         }
     }
 
-    fun loadPokemonFromDb() {
+    private suspend fun getPokemonFromDb(index: Int): PokemonEntity {
+        return repository.getPokemonFromDb(index)
+    }
+    private fun savePage(page: List<PokemonPages>) {
         viewModelScope.launch {
-            val pokemonFromDb = getPage()
-            state = state.copy(
-                loading = false,
-                offset = pokemonFromDb.size,
-                result = pokemonFromDb.map { it.toPokemonNameUrl() }
-            )
+            repository.savePage(page)
         }
     }
 
+    private suspend fun getPage(): List<PokemonPages> {
+        return repository.getAllPage()
+    }
 
-    private suspend fun getPokemonFromDb(index: Int): PokemonEntity {
-        return repository.getPokemonFromDb(index)
+    private fun savePokemon(pokemon: PokemonEntity) {
+        viewModelScope.launch {
+            repository.savePokemon(pokemon)
+        }
     }
 }
