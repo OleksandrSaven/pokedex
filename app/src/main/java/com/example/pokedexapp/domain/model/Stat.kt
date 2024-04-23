@@ -1,6 +1,7 @@
 package com.example.pokedexapp.domain.model
 
 import androidx.compose.ui.graphics.Color
+import com.example.pokedexapp.data.constant.PokemonStrings
 import com.example.pokedexapp.ui.theme.AppColors
 
 data class Stat(
@@ -8,14 +9,14 @@ data class Stat(
 ) {
     fun getStatInfo(name: String): StatInfo {
         return when(name){
-            "hp" -> StatInfo("HP", AppColors.HP)
-            "attack" ->  StatInfo("ATK", AppColors.ATK)
-            "defense" -> StatInfo("DEF", AppColors.DEF)
-            "special-attack" -> StatInfo("SPA", AppColors.SPA)
-            "special-defense" -> StatInfo("SPD", AppColors.SPD)
-            "speed" -> StatInfo("SPE", AppColors.SPE)
+            PokemonStrings.HP -> StatInfo(PokemonStrings.mapToAbbreviation(name) , AppColors.HP)
+            PokemonStrings.ATTACK ->  StatInfo(PokemonStrings.mapToAbbreviation(name), AppColors.ATK)
+            PokemonStrings.DEFENSE -> StatInfo(PokemonStrings.mapToAbbreviation(name), AppColors.DEF)
+            PokemonStrings.SPECIAL_ATTACK -> StatInfo(PokemonStrings.mapToAbbreviation(name), AppColors.SPA)
+            PokemonStrings.SPECIAL_DEFENSE -> StatInfo(PokemonStrings.mapToAbbreviation(name), AppColors.SPD)
+            PokemonStrings.SPEED -> StatInfo(PokemonStrings.mapToAbbreviation(name), AppColors.SPE)
 
-            else -> {StatInfo("unknown", Color.White)}
+            else -> {StatInfo(PokemonStrings.mapToAbbreviation(name), Color.White)}
         }
     }
 }

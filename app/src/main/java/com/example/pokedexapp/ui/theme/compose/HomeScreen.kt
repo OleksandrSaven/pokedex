@@ -12,8 +12,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.pokedexapp.R
 import com.example.pokedexapp.ui.theme.PokemonViewModel
@@ -43,7 +43,7 @@ fun HomeScreen(viewModel: PokemonViewModel, navController: NavController) {
         Column(
             modifier = Modifier
                 .padding(innerPadding),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.space_16))
         ) {
             PokedexScreen(state = viewModel.state, onLoad = { viewModel.loadNextPage()}, navController)
         }

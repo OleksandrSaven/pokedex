@@ -5,6 +5,7 @@ data class PokemonState(
     val errorMessage: String? = null,
     val previous: String? = null,
     val next: String? = null,
+    val offset: Int = 0,
     val result: List<PokemonNameUrl>? = emptyList(),
     val pokemonInfo: PokemonInfo? = null
 )

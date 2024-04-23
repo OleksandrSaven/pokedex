@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
     private val viewModel: PokemonViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.loadPokemon(0, 10)
+        viewModel.loadPokemonFromDb()
 
         setContent {
             PokedexAppTheme {
@@ -26,7 +26,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                   //HomeScreen(viewModel)
                     MainScreen()
                 }
             }

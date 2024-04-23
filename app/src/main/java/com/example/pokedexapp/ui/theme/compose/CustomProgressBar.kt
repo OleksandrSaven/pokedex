@@ -13,8 +13,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
+import com.example.pokedexapp.R
 import com.example.pokedexapp.domain.model.Stat
+
+const val MAX_PROGRESS = 300
+const val PROGRESS_MAX_VAL = "(300)"
 
 @Composable
 fun CustomProgressBar(progress: Float, stat: Stat) {
@@ -23,7 +27,7 @@ fun CustomProgressBar(progress: Float, stat: Stat) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 8.dp),
+                    .padding(horizontal = dimensionResource(id = R.dimen.padding_8)),
                 contentAlignment = Alignment.Center
             ) {
                 LinearProgressIndicator(
@@ -31,11 +35,11 @@ fun CustomProgressBar(progress: Float, stat: Stat) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(ShapeDefaults.Small)
-                        .height(20.dp),
+                        .height(dimensionResource(id = R.dimen.height_20)),
                     color = stat.getStatInfo(stat.name).color,
                     trackColor = Color.LightGray
                 )
-                Text(text = "${(progress * 300).toInt()}/(300)",
+                Text(text = "${(progress * MAX_PROGRESS).toInt()}$PROGRESS_MAX_VAL",
                     color = Color.Black)
             }
         }

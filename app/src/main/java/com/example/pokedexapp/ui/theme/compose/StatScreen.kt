@@ -10,33 +10,38 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pokedexapp.R
-import com.example.pokedexapp.domain.model.Dto.BaseStat
+import com.example.pokedexapp.domain.model.dto.BaseStat
+
+const val MAX_VALUE = 300
 
 @Composable
 fun StatScreen(stat: List<BaseStat>) {
     Text(
         text = stringResource(id = R.string.base_stats),
-        fontSize = 25.sp,
+        fontSize = dimensionResource(id = R.dimen.font_size_25).value.sp,
         fontWeight = FontWeight.Bold,
-        modifier = Modifier.padding(start = 16.dp, top = 8.dp, bottom = 8.dp)
+        modifier = Modifier.padding(
+            start = dimensionResource(id = R.dimen.padding_16),
+            top = dimensionResource(id = R.dimen.padding_8),
+            bottom = dimensionResource(id = R.dimen.padding_8))
     )
     LazyColumn {
         items(stat) { item ->
                 Row (
                     modifier = Modifier
-                        .width(300.dp)
-                        .padding(2.dp),
+                        .width(dimensionResource(id = R.dimen.stat_screen_width))
+                        .padding(dimensionResource(id = R.dimen.padding_2)),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(text = item.stat.getStatInfo(item.stat.name).name,
-                        modifier = Modifier.padding(start = 1.dp))
-                    CustomProgressBar(progress = item.baseStat.toFloat() / 300, item.stat)
+                        modifier = Modifier.padding(start = dimensionResource(id = R.dimen.padding_1)))
+                    CustomProgressBar(progress = item.baseStat.toFloat() / MAX_VALUE, item.stat)
             }
         }
     }
