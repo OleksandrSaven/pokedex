@@ -1,4 +1,4 @@
-package com.example.pokedexapp.domain.model.Dto
+package com.example.pokedexapp.domain.model.dto
 
 import com.example.pokedexapp.domain.model.PokemonNameUrl
 

@@ -5,7 +5,7 @@ build/
 !**/src/test/**/build/
 
 ### IntelliJ IDEA ###
-.idea/
+/.idea
 *.iws
 *.iml
 *.ipr
@@ -21,6 +21,7 @@ out/
 .settings
 .springBeans
 .sts4-cache
+local.properties
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
@@ -37,3 +38,4 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/build
