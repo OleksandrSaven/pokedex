@@ -9,7 +9,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.pokedexapp.ui.theme.PokedexAppTheme
-import com.example.pokedexapp.ui.theme.compose.HomeScreen
 import com.example.pokedexapp.ui.theme.PokemonViewModel
 import com.example.pokedexapp.ui.theme.compose.MainScreen
 import dagger.hilt.android.AndroidEntryPoint
