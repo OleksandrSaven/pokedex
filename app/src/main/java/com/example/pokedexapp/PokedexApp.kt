@@ -12,9 +12,6 @@ import coil.disk.DiskCache
 import coil.util.DebugLogger
 import com.example.pokedexapp.worker.PokemonWorker
 import dagger.hilt.android.HiltAndroidApp
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
 const val IMAGE_CACHE = "image_cache"
@@ -23,11 +20,8 @@ const val BUFFER_SIZE = 10 * 1024 * 1024L
 
 @HiltAndroidApp
 class PokedexApp: Application(), ImageLoaderFactory {
-    private val applicationScope = CoroutineScope(Dispatchers.Default)
     override fun onCreate() {
-        applicationScope.launch {
-            setupRecurringWork()
-        }
+        setupRecurringWork()
         super.onCreate()
     }
 
@@ -35,12 +29,11 @@ class PokedexApp: Application(), ImageLoaderFactory {
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.UNMETERED)
             .setRequiresBatteryNotLow(true)
-            //.setRequiresCharging(true)
             .setRequiresDeviceIdle(true)
             .build()
 
         val repeatingRequest = PeriodicWorkRequestBuilder<PokemonWorker>(
-            REPEAT_INTERVAL, TimeUnit.DAYS)
+            REPEAT_INTERVAL, TimeUnit.HOURS)
             .setConstraints(constraints)
             .build()
 
